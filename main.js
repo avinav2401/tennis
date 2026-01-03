@@ -41,6 +41,18 @@ let keyboard = {};
 document.addEventListener("keydown", e => keyboard[e.key] = true );
 document.addEventListener("keyup", e => keyboard[e.key] = false );
 
+// Hide controls after 10 seconds
+setTimeout(() => {
+    const controls = document.getElementById('controls');
+    if (controls) {
+        controls.classList.add('fade-out');
+        // Remove from DOM after animation completes
+        setTimeout(() => {
+            controls.remove();
+        }, 1000); // Wait for 1s fade-out animation to complete
+    }
+}, 10000); // 10 seconds
+
 // reset
 function reset() {
     ball.serve(1);

@@ -18,3 +18,61 @@ canvas {
     color: white;
     font-family: 'Rubik', sans-serif;
 }
+
+#controls {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 25px;
+    border-radius: 12px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#controls.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.player-controls {
+    margin-bottom: 20px;
+}
+
+.player-controls:last-child {
+    margin-bottom: 0;
+}
+
+.player-controls h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4CAF50;
+    border-bottom: 2px solid rgba(76, 175, 80, 0.3);
+    padding-bottom: 5px;
+}
+
+.player-controls p {
+    margin: 6px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.player-controls kbd {
+    display: inline-block;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    min-width: 50px;
+    text-align: center;
+    margin-right: 8px;
+}

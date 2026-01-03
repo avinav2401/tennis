@@ -98,11 +98,14 @@ function animate(timestamp) {
     let dt = timestamp - t0;
     t0 = timestamp;
 
-    if (keyboard["r"]) reset();
+    // Merge touch and keyboard inputs
+    const combinedInput = touchControls.getKeyboardState(keyboard);
+
+    if (combinedInput["r"]) reset();
 
     ball.update(net, player1, player2, dt);
-    player1.update(keyboard, ball, dt);
-    player2.update(keyboard, ball, dt);
+    player1.update(combinedInput, ball, dt);
+    player2.update(combinedInput, ball, dt);
     renderer.render(scene, camera);
 
     requestAnimationFrame(animate);

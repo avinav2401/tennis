@@ -198,9 +198,9 @@ export class Racket {
             this.x = Math.min(this.x + this.dx * dt, -6);
         }
 
-        // Limit Z movement to stay within court boundaries
+        // Limit Z movement to stay within expanded boundaries (allows ~10 units outside court)
         this.z += this.dz * dt;
-        this.z = Math.max(-20, Math.min(20, this.z)); // Keep between -20 and 20
+        this.z = Math.max(-30, Math.min(30, this.z)); // Keep between -30 and 30
 
         this.model.position.set(this.x, this.y, this.z);
 

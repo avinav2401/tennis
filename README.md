@@ -117,10 +117,6 @@ The game automatically detects touch devices and:
 
 None at the moment! Report issues on GitHub.
 
-## 📄 License
-
-This project is open source and available under the MIT License.
-
 ## 🤝 Contributing
 
 Pull requests are welcome! Feel free to:

@@ -1,160 +1,139 @@
 # 🎾 Tennis Game
 
-A 3D tennis game built with **Three.js** featuring dynamic physics, custom racket animations, and multiplayer controls.
+An interactive 3D tennis game built with Three.js featuring both desktop and mobile controls.
+
+**Live Demo:** [Play on Vercel](https://tennis-avinav2401s-projects.vercel.app/)
 
 ## ✨ Features
 
-- 🎮 **Two-player local multiplayer**
-- 🎨 **Custom blue court** with white lines
-- 🎯 **Realistic tennis physics** with ball spin and charge mechanics
-- 🏸 **3D racket models** (Red & Green)
-- 🔊 **Sound effects** for hits and swings
-- 🌐 **Responsive 3D graphics** powered by Three.js
+### Desktop Controls
+- **Player 1**: WASD keys + Space to swing
+- **Player 2**: Arrow keys + Enter to swing
+- **Reset Game**: Press R
 
-## 🚀 Demo
+### Mobile Touch Controls 📱
+- **Virtual joysticks** for player movement
+- **Swing buttons** for both players
+- Automatically shows on touch devices
+- Optimized camera view for mobile screens
 
-**🌍 GitHub Pages:** [https://avinav-priyadarshi.github.io/tennis/](https://avinav-priyadarshi.github.io/tennis/)
+### Game Features
+- 🎵 **Sound effects** - Ball bounce, racket hits, swing sounds, and scoring
+- 📊 **Live scoring** - Real-time score tracking
+- 🎨 **3D graphics** - Smooth animations and realistic physics
+- 🎯 **Control hints** - Auto-fading instructions for new players (10 seconds)
+- 📱 **Responsive design** - Works on desktop, tablet, and mobile
 
-**⚡ Deploy to Vercel:**
+## 🎮 How to Play
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/avinav-priyadarshi/tennis)
+1. **Desktop**: Use keyboard controls to move and swing
+2. **Mobile**: Use virtual joysticks and tap swing buttons
+3. Hit the ball over the net to score points
+4. First player to score wins!
 
-## 🎮 Controls
+## 🚀 Getting Started
 
-### General
-| Key | Action |
-|-----|--------|
-| `R` | Reset Game |
+### Prerequisites
+- Node.js installed
 
-### Player 1 (Red Racket)
-| Key | Action |
-|-----|--------|
-| `W` | Move Up |
-| `A` | Move Left |
-| `S` | Move Down |
-| `D` | Move Right |
-| `Spacebar` | Swing / Charge |
+### Installation
 
-### Player 2 (Green Racket)
-| Key | Action |
-|-----|--------|
-| `↑` | Move Up |
-| `←` | Move Left |
-| `↓` | Move Down |
-| `→` | Move Right |
-| `Enter` | Swing / Charge |
+```bash
+# Clone the repository
+git clone https://github.com/avinav2401/tennis.git
 
-## 🛠️ Tech Stack
+# Navigate to project directory
+cd tennis
 
-- **Three.js** - 3D graphics rendering
-- **Vite** - Build tool and dev server
-- **JavaScript** - Game logic
-- **GLTF/GLB** - 3D model format
+# Install dependencies
+npm install
 
-## 📦 Installation
+# Start development server
+npm run dev
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/avinav-priyadarshi/tennis.git
-   cd tennis
-   ```
+# Open browser to http://localhost:3000
+```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser:**
-   ```
-   http://localhost:3000
-   ```
-
-## 🏗️ Build for Production
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-The production-ready files will be in the `dist` folder.
+## 🛠️ Technologies Used
 
-## 📤 Deployment
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. Click "Add New Project"
-4. Import your GitHub repository
-5. Vercel will auto-detect Vite and deploy!
-
-### Deploy to GitHub Pages
-
-```bash
-npm run deploy
-```
-
-## 🎨 Customization
-
-### Change Court Color
-
-Edit `src/court.js` and modify the `fieldMaterial` color:
-
-```javascript
-const fieldMaterial = new THREE.MeshBasicMaterial({ 
-  color: 0x0066CC, // Change this hex color
-  side: THREE.DoubleSide 
-});
-```
-
-### Change Racket Models
-
-Replace the `.glb` files in the `models/` directory or edit the imports in `src/racket.js`.
+- **Three.js** - 3D graphics rendering
+- **Vite** - Fast build tool and dev server
+- **Vanilla JavaScript** - No framework overhead
+- **CSS3** - Responsive styling and animations
 
 ## 📁 Project Structure
 
 ```
 tennis/
-├── models/          # 3D models (.glb, .blend)
-├── sounds/          # Audio files
-├── src/             # Game source code
-│   ├── Ball.js      # Ball physics
-│   ├── Court.js     # Court rendering
-│   ├── Net.js       # Net model
-│   ├── Racket.js    # Racket logic
-│   └── SceneManager.js
-├── index.html       # Entry HTML
-├── main.js          # Main game loop
-├── style.css        # Styles
-├── package.json     # Dependencies
-└── vercel.json      # Vercel config
+├── src/
+│   ├── Ball.js          # Ball physics and collision
+│   ├── Court.js         # Tennis court rendering
+│   ├── Net.js           # Net rendering
+│   ├── Racket.js        # Player racket controls
+│   ├── SceneManager.js  # 3D scene setup
+│   └── TouchControls.js # Mobile touch input
+├── models/              # 3D model files (.glb)
+├── sounds/              # Sound effects (.mp3)
+├── index.html
+├── main.js             # Main game loop
+├── style.css           # Styles and mobile UI
+└── package.json
 ```
 
-## 🎯 Gameplay Tips
+## 🎯 Game Controls Summary
 
-- **Charge your swing** by holding the swing button longer for more powerful shots
-- **Positioning matters** - move to intercept the ball's trajectory
-- **Spin shots** are possible with fully charged swings
-- **Smash** high balls for powerful returns
+| Action | Player 1 | Player 2 |
+|--------|----------|----------|
+| Move Up | W / Joystick | ↑ / Joystick |
+| Move Down | S / Joystick | ↓ / Joystick |
+| Move Left | A / Joystick | ← / Joystick |
+| Move Right | D / Joystick | → / Joystick |
+| Swing | Space / Button | Enter / Button |
+| Reset | R | R |
 
-## 🤝 Contributing
+## 🎨 Features Highlights
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+- **Auto-fading Instructions**: Control hints appear for 10 seconds then fade out
+- **Mobile Optimization**: Reduced zoom and optimized controls for smaller screens
+- **Sound System**: Imported sound files work correctly in production builds
+- **Movement Boundaries**: Rackets stay within playable area (±40 units)
+- **Smooth Animations**: 60 FPS gameplay with realistic physics
+
+## 📱 Mobile Experience
+
+The game automatically detects touch devices and:
+- Shows virtual joysticks in bottom corners
+- Hides keyboard control instructions
+- Adjusts camera zoom for better court visibility
+- Provides touch-optimized swing buttons
+
+## 🐛 Known Issues
+
+None at the moment! Report issues on GitHub.
 
 ## 📄 License
 
 This project is open source and available under the MIT License.
 
-## 👨‍💻 Author
+## 🤝 Contributing
+
+Pull requests are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Improve documentation
+- Add new game modes
+
+## 👤 Author
 
 **Avinav Priyadarshi**
-
-- GitHub: [@avinav-priyadarshi](https://github.com/avinav-priyadarshi)
+- GitHub: [@avinav2401](https://github.com/avinav2401)
 
 ---
 
-⭐ If you enjoyed this project, please give it a star!
+Made with ❤️ and Three.js

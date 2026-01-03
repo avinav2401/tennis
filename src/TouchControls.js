@@ -123,22 +123,21 @@ export class TouchControls {
     getKeyboardState(existingKeyboard) {
         const keyboard = { ...existingKeyboard };
 
+        // Reduced sensitivity - higher threshold = slower/more controlled movement
+        const threshold = 0.5; // Increased from 0.3 to slow down
+
         // Player 1 controls
-        if (Math.abs(this.player1.x) > 0.2 || Math.abs(this.player1.y) > 0.2) {
-            if (this.player1.y > 0.3) keyboard['w'] = true;
-            if (this.player1.y < -0.3) keyboard['s'] = true;
-            if (this.player1.x < -0.3) keyboard['a'] = true;
-            if (this.player1.x > 0.3) keyboard['d'] = true;
-        }
+        if (this.player1.y > threshold) keyboard['w'] = true;
+        if (this.player1.y < -threshold) keyboard['s'] = true;
+        if (this.player1.x < -threshold) keyboard['a'] = true;
+        if (this.player1.x > threshold) keyboard['d'] = true;
         if (this.player1.swing) keyboard[' '] = true;
 
         // Player 2 controls
-        if (Math.abs(this.player2.x) > 0.2 || Math.abs(this.player2.y) > 0.2) {
-            if (this.player2.y > 0.3) keyboard['ArrowUp'] = true;
-            if (this.player2.y < -0.3) keyboard['ArrowDown'] = true;
-            if (this.player2.x < -0.3) keyboard['ArrowLeft'] = true;
-            if (this.player2.x > 0.3) keyboard['ArrowRight'] = true;
-        }
+        if (this.player2.y > threshold) keyboard['ArrowUp'] = true;
+        if (this.player2.y < -threshold) keyboard['ArrowDown'] = true;
+        if (this.player2.x < -threshold) keyboard['ArrowLeft'] = true;
+        if (this.player2.x > threshold) keyboard['ArrowRight'] = true;
         if (this.player2.swing) keyboard['Enter'] = true;
 
         return keyboard;

@@ -3,9 +3,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { SceneManager } from "./src/SceneManager";
-import { Court } from "./src/Court.js";
+import { Court } from "./src/court.js";
 import { Net } from "./src/Net";
-import { Racket } from "./src/Racket.js";
+import { Racket } from "./src/racket.js";
 import { Ball } from "./src/Ball";
 import { TouchControls } from "./src/TouchControls.js";
 

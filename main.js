@@ -7,6 +7,7 @@ import { Court } from "./src/Court.js";
 import { Net } from "./src/Net";
 import { Racket } from "./src/Racket.js";
 import { Ball } from "./src/Ball";
+import { TouchControls } from "./src/TouchControls.js";
 
 const sm = new SceneManager();
 const scene = sm.scene;
@@ -38,8 +39,8 @@ window.addEventListener("resize", e => sm.resize(), false);
 
 // handle inputs
 let keyboard = {};
-document.addEventListener("keydown", e => keyboard[e.key] = true );
-document.addEventListener("keyup", e => keyboard[e.key] = false );
+document.addEventListener("keydown", e => keyboard[e.key] = true);
+document.addEventListener("keyup", e => keyboard[e.key] = false);
 
 // Hide controls after 10 seconds
 setTimeout(() => {
@@ -53,6 +54,9 @@ setTimeout(() => {
     }
 }, 10000); // 10 seconds
 
+// Initialize touch controls
+const touchControls = new TouchControls();
+
 // reset
 function reset() {
     ball.serve(1);
@@ -65,7 +69,7 @@ function reset() {
     player1.dx = 0;
     player1.dy = 0;
     player1.dz = 0;
-    
+
     player1.rotation = { x: 0, y: 0, z: 0 };
 
     player1.charge = 0;
@@ -79,7 +83,7 @@ function reset() {
     player2.dx = 0;
     player2.dy = 0;
     player2.dz = 0;
-    
+
     player2.rotation = { x: 0, y: 0, z: 0 };
 
     player2.charge = 0;
@@ -93,14 +97,14 @@ let t0 = 0;
 function animate(timestamp) {
     let dt = timestamp - t0;
     t0 = timestamp;
-    
+
     if (keyboard["r"]) reset();
-    
+
     ball.update(net, player1, player2, dt);
     player1.update(keyboard, ball, dt);
     player2.update(keyboard, ball, dt);
     renderer.render(scene, camera);
-    
+
     requestAnimationFrame(animate);
 }
 

@@ -1,9 +1,11 @@
 import * as THREE from "three";
+import scoreSoundUrl from "../sounds/score.mp3?url";
+import bounceSoundUrl from "../sounds/bounce.mp3?url";
 
 const G = 0.0003;
 const MAX_POINTS = 180;
-const scoreSound = new Audio("../sounds/score.mp3");
-const bounceSound = new Audio("../sounds/bounce.mp3");
+const scoreSound = new Audio(scoreSoundUrl);
+const bounceSound = new Audio(bounceSoundUrl);
 bounceSound.volume = 0.25;
 
 export class Ball {
@@ -34,7 +36,7 @@ export class Ball {
         this.model = new THREE.Mesh(ballGeometry, ballMaterial);
         this.model.position.set(this.x, this.y, this.z);
         this.scene.add(this.model);
-        
+
         // shadow
         const shadowGeometry = new THREE.CircleGeometry(0.8, 32);
         const shadowMaterial = new THREE.MeshBasicMaterial({ color: 0xb1e9a8, side: THREE.DoubleSide });
@@ -49,7 +51,7 @@ export class Ball {
         const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
         this.line = new THREE.Line(lineGeometry, lineMaterial);
         this.scene.add(this.line);
-        
+
         // collision 
         this.boundingSphere = new THREE.Sphere(this.model.position, 0.5);
     }
@@ -69,25 +71,25 @@ export class Ball {
     update(net, player1, player2, dt) {
         if (!this.model || !net.boundingBox)
             return;
-        
+
         // gravity
         this.dy -= G;
         if (this.y < 0.5) {
             this.y = 0.5;
-            this.dy *= -0.95; 
+            this.dy *= -0.95;
             bounceSound.currentTime = 0;
             bounceSound.play();
         }
-        
+
         // invisible walls 
         // if (Math.abs(this.x) > 36)
-            // this.dx *= -1;
+        // this.dx *= -1;
         if (Math.abs(this.z) > 24) {
             this.dz *= -1;
             bounceSound.currentTime = 0;
             bounceSound.play();
         }
-        
+
         // check out of bounds
         if (this.x > 64) {
             this.serve(1);
@@ -110,35 +112,35 @@ export class Ball {
             bounceSound.currentTime = 0;
             bounceSound.play();
         }
-        
+
         // rackets
-        if (this.boundingSphere.intersectsBox(player1.boundingBox) && 
-        player1.swinging && !player1.charging) {
+        if (this.boundingSphere.intersectsBox(player1.boundingBox) &&
+            player1.swinging && !player1.charging) {
             player1.hit(this);
         }
-        
-        if (this.boundingSphere.intersectsBox(player2.boundingBox) && 
-        player2.swinging && !player2.charging) {
+
+        if (this.boundingSphere.intersectsBox(player2.boundingBox) &&
+            player2.swinging && !player2.charging) {
             player2.hit(this);
         }
-        
+
         // spin
         this.dz += this.d2z;
         this.d2z *= 0.95;
         // this.d2z *= 0.95;
-        
+
         // movement
         this.x += this.dx * dt;
         this.y += this.dy * dt;
         this.z += this.dz * dt;
         this.model.position.set(this.x, this.y, this.z);
         this.boundingSphere.set(this.model.position, 0.5);
-        
+
         // shadow
         let shadowScale = (25 - this.y) / 25;
         this.shadow.scale.set(shadowScale, shadowScale, shadowScale);
         this.shadow.position.set(this.x, 0.015, this.z);
-        
+
         // path line
         if (this.linePoints < MAX_POINTS) {
             this.line.geometry.attributes.position.array[this.linePoints * 3] = this.x;
@@ -149,8 +151,8 @@ export class Ball {
             this.linePoints++;
         } else {
             for (let i = 0; i < MAX_POINTS * 3; i++)
-                this.line.geometry.attributes.position.array[i] = 
-                this.line.geometry.attributes.position.array[i + 3];
+                this.line.geometry.attributes.position.array[i] =
+                    this.line.geometry.attributes.position.array[i + 3];
 
             this.line.geometry.attributes.position.array[MAX_POINTS * 3 - 3] = this.x;
             this.line.geometry.attributes.position.array[MAX_POINTS * 3 - 2] = this.y;

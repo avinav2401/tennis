@@ -1,9 +1,11 @@
 import * as THREE from "three";
 import redRacketData from "../models/racket_red.glb?url";
 import greenRacketData from "../models/racket_green.glb?url";
+import hitSoundUrl from "../sounds/hit.mp3?url";
+import swingSoundUrl from "../sounds/swing.mp3?url";
 
-const hitSound = new Audio("../sounds/hit.mp3");
-const swingSound = new Audio("../sounds/swing.mp3");
+const hitSound = new Audio(hitSoundUrl);
+const swingSound = new Audio(swingSoundUrl);
 swingSound.volume = 0.25;
 
 export class Racket {

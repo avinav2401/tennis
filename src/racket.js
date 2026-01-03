@@ -191,14 +191,17 @@ export class Racket {
             this.charge = 0;
         }
 
-        // movement
+        // movement with boundaries
         if (this.player == 1) {
             this.x = Math.max(this.x + this.dx * dt, 6);
         } else {
             this.x = Math.min(this.x + this.dx * dt, -6);
         }
 
+        // Limit Z movement to stay within court boundaries
         this.z += this.dz * dt;
+        this.z = Math.max(-20, Math.min(20, this.z)); // Keep between -20 and 20
+
         this.model.position.set(this.x, this.y, this.z);
 
         // rotation
